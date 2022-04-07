@@ -1,0 +1,9 @@
+name: Test
+version: '${project.version}'
+main: de.flamex.test.Test
+api-version: 1.18
+commands:
+  unban:
+    description: Unban a player
+    usage: /unban <username>
+    permission: minecraft.command.pardon
