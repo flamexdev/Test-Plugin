@@ -21,7 +21,10 @@ public class onLogin implements Listener {
         if (player.isBanned()) {
             BanEntry ban = Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntry(player.getName());
 
+            String source = ban.getSource();
             String expiration;
+            String reason = ban.getReason();
+
             if (ban.getExpiration() == null) {
                 expiration = "Permament";
             } else {
@@ -33,9 +36,9 @@ public class onLogin implements Listener {
                     "\n" +
                     ChatColor.DARK_RED + "You are banned!\n" +
                     "\n" +
-                    ChatColor.RED + "Issued by: " + ChatColor.GRAY + ban.getSource() + "\n" +
+                    ChatColor.RED + "Issued by: " + ChatColor.GRAY + source + "\n" +
                     ChatColor.RED + "Expires at: " + ChatColor.GRAY + expiration + "\n" +
-                    ChatColor.RED + "Ban reason: " + ChatColor.GRAY + ban.getReason()
+                    ChatColor.RED + "Ban reason: " + ChatColor.GRAY + reason
             );
         } else {
             /**
