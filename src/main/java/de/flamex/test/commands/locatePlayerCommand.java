@@ -1,15 +1,16 @@
 package de.flamex.test.commands;
 
-import de.flamex.test.utilities.errorMessages;
-import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class unbanCommand implements CommandExecutor {
+import de.flamex.test.utilities.errorMessages;
+import org.bukkit.entity.Player;
+
+public class locatePlayerCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -26,13 +27,14 @@ public class unbanCommand implements CommandExecutor {
             return true;
         }
 
-        OfflinePlayer target = Bukkit.getServer().getOfflinePlayer(args[0]);
-        if (!target.isBanned()) {
-            errorMessages.custom(target.getName() + " is not banned");
-        } else {
-            Bukkit.getServer().getBanList(BanList.Type.NAME).pardon(target.getName());
-            sender.sendMessage(ChatColor.GREEN + target.getName() + " got unbanned");
+        Player player = Bukkit.getServer().getPlayer(args[0]);
+        if (player == null) {
+            errorMessages.custom("Player is not online");
+            return true;
         }
+
+        Location location = player.getLocation();
+        sender.sendMessage(player.getDisplayName() + " is located at " + ChatColor.GREEN + "[" + Math.round(location.getX()) + ", " + Math.round(location.getY()) + ", " + Math.round(location.getZ()) + "]");
 
         return true;
     }

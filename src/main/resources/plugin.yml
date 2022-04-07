@@ -7,3 +7,7 @@ commands:
     description: Unban a player
     usage: /unban <username>
     permission: minecraft.command.pardon
+  lp:
+    description: Locate a player
+    usage: /lp <username>
+    permission: minecraft.command.stop

@@ -8,6 +8,7 @@ public final class Test extends JavaPlugin {
     @Override
     public void onEnable() {
         this.getCommand("unban").setExecutor(new unbanCommand());
+        this.getCommand("lp").setExecutor(new locatePlayerCommand());
     }
 
     @Override
